@@ -1,12 +1,13 @@
 package owasp.sat.agoat
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.Window
 import android.view.WindowManager
-import org.jetbrains.anko.startActivity
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
 
@@ -16,9 +17,12 @@ class SplashActivity : AppCompatActivity() {
         supportActionBar?.hide()
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_splash)
-        Handler().postDelayed({
-            startActivity(Intent(this,MainActivity::class.java))
-            finish()
-        },5000)
+
+        // Substituindo Handler().postDelayed() por Coroutines
+        GlobalScope.launch {
+            delay(5000) // Aguarda 5 segundos
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            finish() // Fecha a SplashActivity
+        }
     }
 }
