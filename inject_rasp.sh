@@ -1,12 +1,12 @@
 #!/bin/bash
 
-MAIN_ACTIVITY="app/src/main/java/jakhar/aseem/diva/MainActivity.java"
+MAIN_ACTIVITY="app/src/main/java/com/oversecured/androgoat/MainActivity.java"
 
 # Verifica se o arquivo existe antes de modificar
 if [ -f "$MAIN_ACTIVITY" ]; then
     echo "Modificando MainActivity.java para incluir RASP..."
 
-    # Adiciona importações do Android RASP
+    # Adiciona importação do Android RASP
     sed -i '/import android.os.Bundle;/a import securevale.rasp.RASP;' $MAIN_ACTIVITY
 
     # Adiciona código dentro do onCreate para verificar root e emulador
